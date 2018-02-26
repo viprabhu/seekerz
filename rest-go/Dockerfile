@@ -1,7 +1,9 @@
-FROM golang
-RUN mkdir /rest-go
-ADD main.go /app/
-WORKDIR /app
-RUN go build -o rest-go .
+FROM golang:1.9.2-alpine
+
+RUN mkdir -p /usr/share/rest
+
+ADD main /usr/share/rest/main
+
 EXPOSE 8080
-CMD ["/app/rest-go"]
+
+ENTRYPOINT /usr/share/rest/main
